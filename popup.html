@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Overleaf Cookie</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <h1>Overleaf cookie for VS Code</h1>
+
+  <label for="server">Server URL</label>
+  <div class="row">
+    <input id="server" type="url" spellcheck="false" placeholder="https://www.overleaf.com">
+    <button id="useTab" type="button" title="Use the current tab's origin">Tab</button>
+  </div>
+
+  <label class="check">
+    <input id="all" type="checkbox"> Copy all cookies
+  </label>
+
+  <button id="copy" type="button" class="primary">Copy cookie</button>
+
+  <textarea id="output" readonly rows="4" placeholder="Cookie will appear here"></textarea>
+  <p id="status" role="status" aria-live="polite"></p>
+
+  <p class="hint">
+    In VS Code, run <b>Overleaf Workshop: Login with Cookies</b> and paste.
+    Treat this value like a password.
+  </p>
+
+  <script src="popup.js"></script>
+</body>
+</html>

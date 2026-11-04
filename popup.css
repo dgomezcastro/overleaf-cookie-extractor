@@ -1,0 +1,87 @@
+:root {
+  --bg: #ffffff;
+  --fg: #1f2328;
+  --muted: #59636e;
+  --border: #d0d7de;
+  --field: #f6f8fa;
+  --accent: #138a36;
+  --accent-fg: #ffffff;
+  --ok: #138a36;
+  --err: #cf222e;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1b22;
+    --fg: #e6edf3;
+    --muted: #9198a1;
+    --border: #3d444d;
+    --field: #2b2a33;
+    --accent: #2ea043;
+    --ok: #3fb950;
+    --err: #f85149;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  width: 340px;
+  margin: 0;
+  padding: 12px;
+  font: 13px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+h1 { font-size: 14px; margin: 0 0 10px; }
+
+label { display: block; margin: 0 0 4px; font-weight: 600; }
+label.check { font-weight: normal; margin: 8px 0; display: flex; gap: 6px; align-items: center; }
+
+.row { display: flex; gap: 6px; }
+
+input[type="url"], textarea {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--field);
+  color: var(--fg);
+  font: inherit;
+}
+
+textarea {
+  margin-top: 8px;
+  resize: vertical;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  word-break: break-all;
+}
+
+button {
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--field);
+  color: var(--fg);
+  font: inherit;
+  cursor: pointer;
+}
+
+button.primary {
+  width: 100%;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-fg);
+  font-weight: 600;
+}
+
+button:disabled { opacity: 0.6; cursor: default; }
+
+#status { min-height: 1.4em; margin: 6px 0 0; }
+#status.ok { color: var(--ok); }
+#status.err { color: var(--err); }
+
+.hint { margin: 8px 0 0; color: var(--muted); font-size: 12px; }
