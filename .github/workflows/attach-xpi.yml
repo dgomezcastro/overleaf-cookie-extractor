@@ -1,0 +1,39 @@
+name: Attach signed XPI from a previous run
+
+# Manual fallback: copy the signed XPI produced by an earlier "Build XPI" run
+# onto a GitHub release (e.g. when the release step of that run failed).
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: "ID of the Build XPI run that produced the signed XPI"
+        required: true
+      tag:
+        description: "Release tag to attach it to (e.g. v1.0.0)"
+        required: true
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  attach:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: overleaf-cookie-signed
+          run-id: ${{ inputs.run_id }}
+          github-token: ${{ github.token }}
+          path: xpi
+
+      - name: Upload to release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ inputs.tag }}
+        run: |
+          ls -l xpi
+          version="${TAG#v}"
+          mv xpi/*.xpi "xpi/overleaf-cookie-${version}.xpi"
+          gh release upload "$TAG" "xpi/overleaf-cookie-${version}.xpi" \
+            -R "$GITHUB_REPOSITORY" --clobber
