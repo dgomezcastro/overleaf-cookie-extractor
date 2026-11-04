@@ -53,6 +53,27 @@ npx web-ext build         # package into web-ext-artifacts/
 npx web-ext sign --channel=unlisted --api-key=… --api-secret=…   # sign for permanent install
 ```
 
+## Releases (CI)
+
+`.github/workflows/build.yml` runs on every push and pull request. It lints the extension
+and uploads an **unsigned** `.xpi` as a workflow artifact. Unsigned builds work only via
+`about:debugging`, or in Firefox Developer Edition / Nightly with
+`xpinstall.signatures.required` set to `false`.
+
+To get a **signed** `.xpi` that installs in regular Firefox:
+
+1. Create API credentials at <https://addons.mozilla.org/developers/addon/api/key/>.
+2. Add them as repository secrets `AMO_JWT_ISSUER` and `AMO_JWT_SECRET`
+   (Settings → Secrets and variables → Actions).
+3. Bump `version` in `manifest.json`, commit, then tag and push:
+   ```sh
+   git tag v1.0.0 && git push origin v1.0.0
+   ```
+
+The workflow signs the add-on as unlisted on AMO and attaches the signed `.xpi` to a
+GitHub Release for that tag. AMO accepts each version only once, so every release needs a new
+version number.
+
 ## License
 
 [MIT](LICENSE) © 2026 David Gómez-Castro
