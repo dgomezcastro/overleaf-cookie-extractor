@@ -33,7 +33,4 @@ jobs:
           TAG: ${{ inputs.tag }}
         run: |
           ls -l xpi
-          version="${TAG#v}"
-          mv xpi/*.xpi "xpi/overleaf-cookie-${version}.xpi"
-          gh release upload "$TAG" "xpi/overleaf-cookie-${version}.xpi" \
-            -R "$GITHUB_REPOSITORY" --clobber
+          gh release upload "$TAG" xpi/*.xpi -R "$GITHUB_REPOSITORY" --clobber
