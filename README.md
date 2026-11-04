@@ -70,8 +70,9 @@ To get a **signed** `.xpi` that installs in regular Firefox:
    git tag v1.0.0 && git push origin v1.0.0
    ```
 
-The workflow signs the add-on as unlisted on AMO and attaches the signed `.xpi` to a
-GitHub Release for that tag. AMO accepts each version only once, so every release needs a new
+The workflow signs the add-on as unlisted on AMO and attaches the signed `.xpi` to the
+GitHub Release for that tag. If the release doesn't exist yet, it is created as a **draft**;
+publish it from the Releases page when ready. AMO accepts each version only once, so every release needs a new
 version number.
 
 ## License
