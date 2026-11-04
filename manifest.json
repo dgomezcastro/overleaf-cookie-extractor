@@ -5,7 +5,7 @@
   "description": "Copy your Overleaf session cookie to the clipboard for the Overleaf Workshop VS Code extension (Login with Cookies).",
   "browser_specific_settings": {
     "gecko": {
-      "id": "overleaf-cookie-copier@local",
+      "id": "overleaf-cookie-extractor@dgomezcastro.github.io",
       "strict_min_version": "128.0",
       "data_collection_permissions": {
         "required": [
